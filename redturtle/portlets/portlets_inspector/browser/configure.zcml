@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="redturtle.portlets.inspector">
+
+  <include package="plone.app.contentmenu" />
+
+  <!-- -*- extra stuff goes here -*- -->
+  
+  <browser:page
+    for="*"
+    name="inspect-portlets"
+    template="inspect-portlets.pt"
+    class=".inspector.InspectPortlets"
+    permission="cmf.ManagePortal"
+  />
+
+</configure>
