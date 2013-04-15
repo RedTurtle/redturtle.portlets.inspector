@@ -7,6 +7,7 @@ from zope.component import getMultiAdapter, getUtilitiesFor
 from pprint import PrettyPrinter
 from cStringIO import StringIO
 
+
 class InspectPortlets(BrowserView):
     '''
     Base view to inspect portlets
@@ -16,7 +17,7 @@ class InspectPortlets(BrowserView):
     def portlet_managers(self):
         managers = getUtilitiesFor(IPortletManager)
         return tuple(managers)
-    
+
     def assignments(self, obj):
         '''
         Get assignments for object
@@ -29,11 +30,11 @@ class InspectPortlets(BrowserView):
             except:
                 keys = []
             if keys:
-                all_assignments[manager_name] = [type(manager_assignments[x]) 
-                                                 for x 
+                all_assignments[manager_name] = [type(manager_assignments[x])
+                                                 for x
                                                  in keys]
         return all_assignments
-    
+
     def update_results(self, obj):
         '''
         Update the results

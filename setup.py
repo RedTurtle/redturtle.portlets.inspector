@@ -12,7 +12,7 @@ def read(*rnames):
 version = '0.9.0'
 
 long_description = (
-    read('README.txt')
+    read('README.md')
     + '\n' +
     'Detailed Documentation\n'
     '**********************\n'
@@ -46,7 +46,7 @@ setup(name='redturtle.portlets.inspector',
       url='http://svn.plone.org/svn/collective/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['redturtle', ],
+      namespace_packages=['redturtle', 'redturtle.portlets'],
       include_package_data=True,
       zip_safe=False,
       install_requires=['setuptools',

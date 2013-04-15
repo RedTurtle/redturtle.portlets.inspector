@@ -52,6 +52,9 @@ submit click.  We then ensure that we get the friendly logged-in message:
 Finally, let's return to the front page of our site before continuing
 
     >>> browser.open(portal_url)
+    
+Then we check the inspect-portlets view    
+    >>> browser.open(portal_url+'/@@inspect-portlets')
 
 -*- extra stuff goes here -*-
 

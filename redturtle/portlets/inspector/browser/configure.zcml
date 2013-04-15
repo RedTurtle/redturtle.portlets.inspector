@@ -10,7 +10,6 @@
   <browser:page
     for="*"
     name="inspect-portlets"
-    template="inspect-portlets.pt"
     class=".inspector.InspectPortlets"
     permission="cmf.ManagePortal"
   />

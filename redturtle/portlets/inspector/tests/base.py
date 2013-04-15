@@ -36,8 +36,8 @@ def setup_product():
     # This can of course use <include /> to include other packages.
 
     fiveconfigure.debug_mode = True
-    import redturtle.portlets_inspector
-    zcml.load_config('configure.zcml', redturtle.portlets_inspector)
+    import redturtle.portlets.inspector
+    zcml.load_config('configure.zcml', redturtle.portlets.inspector)
     fiveconfigure.debug_mode = False
 
     # We need to tell the testing framework that these products
@@ -51,14 +51,14 @@ def setup_product():
     # We may also need to load dependencies, e.g.:
     #   ztc.installPackage('borg.localrole')
 
-    ztc.installPackage('redturtle.portlets_inspector')
+    ztc.installPackage('redturtle.portlets.inspector')
 
 # The order here is important: We first call the (deferred) function
 # which installs the products we need for this product. Then, we let
 # PloneTestCase set up this product on installation.
 
 setup_product()
-ptc.setupPloneSite(products=['redturtle.portlets_inspector'])
+ptc.setupPloneSite(products=['redturtle.portlets.inspector'])
 
 
 class TestCase(ptc.PloneTestCase):
