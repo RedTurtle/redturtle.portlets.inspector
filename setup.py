@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.9.0'
+version = '0.9.0.dev0'
 
 long_description = (
     read('README.md')
@@ -37,13 +37,19 @@ setup(name='redturtle.portlets.inspector',
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         'Framework :: Plone',
+        'Framework :: Plone :: 3.2',
+        'Framework :: Plone :: 3.3',
+        'Framework :: Plone :: 4.0',
+        'Framework :: Plone :: 4.1',
+        'Framework :: Plone :: 4.2',
+        'Framework :: Plone :: 4.3',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU General Public License (GPL)',
         ],
-      keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      keywords='plone portlets',
+      author='RedTurtle Technology',
+      author_email='sviluppoplone@redturtle.it',
+      url='http://plone.org/products/redturtle.portlets.inspector',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['redturtle', 'redturtle.portlets'],
