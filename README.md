@@ -16,9 +16,12 @@ or in restrict your analysis in a subsection of your site, e.g.:
 
 For a newly created Plone site it will output:
 ```
-{'/Plone': {u'plone.leftcolumn': [<class 'plone.app.portlets.portlets.navigation.Assignment'>],
-            u'plone.rightcolumn': [<class 'plone.app.portlets.portlets.news.Assignment'>,
-                                   <class 'plone.app.portlets.portlets.events.Assignment'>]}}
+{'/Plone': {u'plone.leftcolumn': [('<Assignment at ++contextportlets++plone.leftcolumn/navigation>',
+                                   "<class 'plone.app.portlets.portlets.navigation.Assignment'>")],
+            u'plone.rightcolumn': [('<Assignment at ++contextportlets++plone.rightcolumn/news>',
+                                    "<class 'plone.app.portlets.portlets.news.Assignment'>"),
+                                   ('<Assignment at ++contextportlets++plone.rightcolumn/events>',
+                                    "<class 'plone.app.portlets.portlets.events.Assignment'>")]}}
 ```
 
 Installation

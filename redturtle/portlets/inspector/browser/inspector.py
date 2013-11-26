@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
-from Products.Archetypes.utils import shasattr
+from Acquisition import aq_base
 from Products.Five import BrowserView
+from cStringIO import StringIO
 from plone.app.portlets.interfaces import IPortletManager
 from plone.memoize.view import memoize
-from zope.component import getMultiAdapter, getUtilitiesFor
 from pprint import PrettyPrinter
-from cStringIO import StringIO
+from zope.component import getMultiAdapter, getUtilitiesFor
+
+_marker = []
+
+
+def shasattr(obj, attr):
+    """ shasattr implementation inspired by Products.Archetypes
+
+    https://github.com/plone/Products.Archetypes/blob/master/Products/Archetypes/utils.py  # noqa
+    """
+    return getattr(aq_base(obj), attr, _marker) is not _marker
 
 
 class InspectPortlets(BrowserView):
@@ -15,24 +25,35 @@ class InspectPortlets(BrowserView):
     @property
     @memoize
     def portlet_managers(self):
+        ''' Returns the portlet managers, e.g.:
+         - plone.leftcolumn
+         - plone.rightcolumn
+         - ...
+        '''
         managers = getUtilitiesFor(IPortletManager)
         return tuple(managers)
 
     def assignments(self, obj):
         '''
-        Get assignments for object
+        Get assignments for object, i.e. the portlets assigned in the context
+        of obj
         '''
         all_assignments = {}
         for manager_name, manager in self.portlet_managers:
             manager_assignments = getMultiAdapter((obj, manager))
             try:
                 keys = manager_assignments.keys()
-            except:
+            except AttributeError:
                 keys = []
             if keys:
-                all_assignments[manager_name] = [type(manager_assignments[x])
-                                                 for x
-                                                 in keys]
+                values = [
+                    (repr(manager_assignments[x]),
+                     repr(manager_assignments[x].__class__))
+                    for x in keys
+                    if manager_assignments[x]
+                ]
+                if values:
+                    all_assignments[manager_name] = values
         return all_assignments
 
     def update_results(self, obj):
